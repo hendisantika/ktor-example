@@ -40,3 +40,51 @@ If the server starts successfully, you'll see the following output:
 2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
 
+## API Endpoints
+
+This project provides the following API endpoints for managing user data:
+
+### Get Hello World
+
+```bash
+curl -X GET http://localhost:8080/
+```
+
+### Add a new user
+
+```bash
+curl -X POST http://localhost:8080/adduser \
+  -d "name=John Doe" \
+  -d "profilePic=https://example.com/profile.jpg"
+```
+
+Note: The `profilePic` parameter is optional.
+
+### Get all users
+
+```bash
+curl -X GET http://localhost:8080/users
+```
+
+### Get a specific user by ID
+
+```bash
+curl -X GET http://localhost:8080/user/1
+```
+
+### Update a user
+
+```bash
+curl -X PUT http://localhost:8080/user/1 \
+  -d "name=Updated Name" \
+  -d "profilePic=https://example.com/new-profile.jpg"
+```
+
+Note: The `profilePic` parameter is optional.
+
+### Delete a user
+
+```bash
+curl -X DELETE http://localhost:8080/user/1
+```
+
