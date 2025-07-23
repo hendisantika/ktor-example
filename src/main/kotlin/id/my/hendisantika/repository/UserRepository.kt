@@ -16,4 +16,5 @@ import id.my.hendisantika.id.my.hendisantika.entity.Player
 interface UserRepository {
     suspend fun allUsers(): List<Player>
     suspend fun user(id: Int): Player?
+    suspend fun addNewUser(name: String, profilePic: String?): Player?
 }
