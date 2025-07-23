@@ -2,10 +2,8 @@ package id.my.hendisantika.id.my.hendisantika.repository
 
 import id.my.hendisantika.id.my.hendisantika.entity.Player
 import id.my.hendisantika.id.my.hendisantika.entity.Players
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.update
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 /**
  * Created by IntelliJ IDEA.
@@ -46,4 +44,7 @@ class UserDaoImpl : UserRepository {
         } > 0
     }
 
+    override suspend fun deleteUser(id: Int): Boolean = dbQuery {
+        Players.deleteWhere { Players.id eq id } > 0
+    }
 }
