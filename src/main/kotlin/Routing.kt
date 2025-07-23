@@ -21,5 +21,14 @@ fun Application.configureRouting() {
             dao.addNewUser(name, profilePic)
             call.respond("User added successfully")
         }
+
+        get("/users") {
+            val listOfUsers = dao.allUsers()
+            if (listOfUsers.isEmpty()) {
+                call.respond("emptyyyy")
+            } else {
+                call.respond(listOfUsers.toString())
+            }
+        }
     }
 }
