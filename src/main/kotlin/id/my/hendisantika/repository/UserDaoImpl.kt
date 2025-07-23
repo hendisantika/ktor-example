@@ -2,6 +2,7 @@ package id.my.hendisantika.id.my.hendisantika.repository
 
 import id.my.hendisantika.id.my.hendisantika.entity.Player
 import id.my.hendisantika.id.my.hendisantika.entity.Players
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 
 /**
@@ -18,5 +19,13 @@ import org.jetbrains.exposed.sql.selectAll
 class UserDaoImpl : UserRepository {
     override suspend fun allUsers(): List<Player> = dbQuery {
         Players.selectAll().map(::resultRowToArticle)
+    }
+
+    override suspend fun user(id: Int): Player? = dbQuery {
+        Players.select {
+            Players.id eq id
+        }
+            .map(::resultRowToArticle)
+            .singleOrNull()
     }
 }
