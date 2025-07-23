@@ -1,6 +1,7 @@
 package id.my.hendisantika.id.my.hendisantika.entity
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.sql.Table
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,3 +20,11 @@ data class Player(
     val name: String,
     val profilePic: String?
 )
+
+object Players : Table() {
+    val id = integer("id").autoIncrement()
+    val name = varchar("name", 128)
+    val profilePic = varchar("profilePic", 1024).nullable()
+
+    override val primaryKey = PrimaryKey(id)
+}
