@@ -2,6 +2,7 @@ package id.my.hendisantika.id.my.hendisantika.repository
 
 import id.my.hendisantika.id.my.hendisantika.entity.Player
 import id.my.hendisantika.id.my.hendisantika.entity.Players
+import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 
@@ -27,5 +28,13 @@ class UserDaoImpl : UserRepository {
         }
             .map(::resultRowToArticle)
             .singleOrNull()
+    }
+
+    override suspend fun addNewUser(name: String, profilePic: String?): Player? = dbQuery {
+        val insertStatement = Players.insert {
+            it[Players.name] = name
+            it[Players.profilePic] = profilePic
+        }
+        insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToArticle)
     }
 }
