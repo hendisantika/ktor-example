@@ -2,6 +2,7 @@ val kotlin_version: String by project
 val logback_version: String by project
 val postgresql_driver_version: String by project
 val exposed_version: String by project
+val testcontainers_version = "1.19.7"
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -33,4 +34,9 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+    // TestContainers
+    testImplementation("org.testcontainers:testcontainers:$testcontainers_version")
+    testImplementation("org.testcontainers:junit-jupiter:$testcontainers_version")
+    testImplementation("org.testcontainers:postgresql:$testcontainers_version")
 }
