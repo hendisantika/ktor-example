@@ -5,6 +5,7 @@ import id.my.hendisantika.id.my.hendisantika.entity.Players
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.update
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,4 +38,12 @@ class UserDaoImpl : UserRepository {
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToArticle)
     }
+
+    override suspend fun editUser(id: Int, name: String, profilePic: String?): Boolean = dbQuery {
+        Players.update({ Players.id eq id }) {
+            it[Players.name] = name
+            it[Players.profilePic] = profilePic
+        } > 0
+    }
+
 }
