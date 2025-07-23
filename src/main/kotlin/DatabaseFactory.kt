@@ -1,5 +1,6 @@
 package id.my.hendisantika
 
+import id.my.hendisantika.entity.Players
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -20,18 +21,16 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DatabaseFactory {
     fun init() {
         val database = Database.connect(
-            url = "jdbc:postgresql://localhost:5432/z-draw",
+            url = "jdbc:postgresql://localhost:5433/player",
             driver = "org.postgresql.Driver",
-            user = "postgres",
-            password = "zaidkhan7860"
+            user = "yu71",
+            password = "53cret"
         )
         transaction(database) {
             SchemaUtils.create(Players)
         }
-
-        suspend fun <T> dbQuery(block: suspend () -> T): T =
-            newSuspendedTransaction(Dispatchers.IO) { block() }
     }
 
-
+    suspend fun <T> dbQuery(block: suspend () -> T): T =
+        newSuspendedTransaction(Dispatchers.IO) { block() }
 }
