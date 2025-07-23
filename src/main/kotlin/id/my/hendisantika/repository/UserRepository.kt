@@ -17,4 +17,5 @@ interface UserRepository {
     suspend fun allUsers(): List<Player>
     suspend fun user(id: Int): Player?
     suspend fun addNewUser(name: String, profilePic: String?): Player?
+    suspend fun editUser(id: Int, name: String, profilePic: String?): Boolean
 }
