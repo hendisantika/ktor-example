@@ -47,4 +47,10 @@ class UserDaoImpl : UserRepository {
     override suspend fun deleteUser(id: Int): Boolean = dbQuery {
         Players.deleteWhere { Players.id eq id } > 0
     }
+
+    private fun resultRowToPlayer(row: ResultRow) = Player(
+        id = row[Players.id],
+        name = row[Players.name],
+        profilePic = row[Players.profilePic]
+    )
 }
