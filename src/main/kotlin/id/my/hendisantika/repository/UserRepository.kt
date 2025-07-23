@@ -1,6 +1,6 @@
-package id.my.hendisantika.id.my.hendisantika.repository
+package id.my.hendisantika.repository
 
-import id.my.hendisantika.id.my.hendisantika.entity.Player
+import id.my.hendisantika.entity.Player
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,7 +1,8 @@
-package id.my.hendisantika.id.my.hendisantika.repository
+package id.my.hendisantika.repository
 
-import id.my.hendisantika.id.my.hendisantika.entity.Player
-import id.my.hendisantika.id.my.hendisantika.entity.Players
+import id.my.hendisantika.DatabaseFactory.dbQuery
+import id.my.hendisantika.entity.Player
+import id.my.hendisantika.entity.Players
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
@@ -18,14 +19,14 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
  */
 class UserDaoImpl : UserRepository {
     override suspend fun allUsers(): List<Player> = dbQuery {
-        Players.selectAll().map(::resultRowToArticle)
+        Players.selectAll().map(::resultRowToPlayer)
     }
 
     override suspend fun user(id: Int): Player? = dbQuery {
         Players.select {
             Players.id eq id
         }
-            .map(::resultRowToArticle)
+            .map(::resultRowToPlayer)
             .singleOrNull()
     }
 
@@ -34,7 +35,7 @@ class UserDaoImpl : UserRepository {
             it[Players.name] = name
             it[Players.profilePic] = profilePic
         }
-        insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToArticle)
+        insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToPlayer)
     }
 
     override suspend fun editUser(id: Int, name: String, profilePic: String?): Boolean = dbQuery {

@@ -1,4 +1,4 @@
-package id.my.hendisantika.id.my.hendisantika.entity
+package id.my.hendisantika.entity
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
