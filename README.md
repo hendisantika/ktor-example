@@ -33,6 +33,43 @@ To build or run the project, use one of the following tasks:
 | `run`                         | Run the server                                                       |
 | `runDocker`                   | Run using the local docker image                                     |
 
+## Testing with TestContainers
+
+This project uses [TestContainers](https://www.testcontainers.org/) for integration testing with PostgreSQL.
+TestContainers automatically starts a PostgreSQL container during test execution, allowing for isolated and reproducible
+tests without the need for a local PostgreSQL installation.
+
+To run the tests with TestContainers:
+
+```bash
+./gradlew test
+```
+
+The tests will:
+
+1. Start a PostgreSQL container
+2. Initialize the database schema
+3. Run tests against the database
+4. Automatically shut down the container when tests complete
+
+### Test Implementation
+
+The database tests are implemented in `src/test/kotlin/id/my/hendisantika/DatabaseTest.kt` and include:
+
+- Testing database connection
+- Adding and retrieving users
+- Updating users
+- Deleting users
+- Retrieving all users
+
+### Requirements
+
+To run the tests with TestContainers, you need:
+
+- Docker installed and running on your machine
+- JDK 11 or higher
+- Gradle
+
 If the server starts successfully, you'll see the following output:
 
 ```
