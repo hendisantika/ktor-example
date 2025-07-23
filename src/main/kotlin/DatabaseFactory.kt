@@ -1,6 +1,8 @@
 package id.my.hendisantika
 
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,11 +17,16 @@ import org.jetbrains.exposed.sql.Database
  */
 object DatabaseFactory {
     fun init() {
-        Database.connect(
-            url = "jdbc:postgresql://localhost:5433/ktor",
+        val database = Database.connect(
+            url = "jdbc:postgresql://localhost:5432/z-draw",
             driver = "org.postgresql.Driver",
-            user = "yu71",
-            password = "53cret"
+            user = "postgres",
+            password = "zaidkhan7860"
         )
+        transaction(database) {
+            SchemaUtils.create(Players)
+        }
     }
+
+
 }
