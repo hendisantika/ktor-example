@@ -1,7 +1,7 @@
-val kotlin_version = project.property("kotlin_version") as String
-val logback_version = project.property("logback_version") as String
-val postgresql_driver_version = project.property("postgresql_driver_version") as String
-val exposed_version = project.property("exposed_version") as String
+val kotlin_version = "2.4.21"
+val logback_version = "1.4.14"
+val postgresql_driver_version = "42.3.1"
+val exposed_version = "0.41.1"
 val testcontainers_version = "1.21.4"
 
 plugins {
