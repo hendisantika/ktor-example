@@ -1,7 +1,7 @@
 val kotlin_version = "2.4.21"
 val logback_version = "1.6.6"
 val postgresql_driver_version = "42.7.14"
-val exposed_version = "1.6.0"
+val exposed_version = "1.6.1"
 val testcontainers_version = "1.21.4"
 
 plugins {
