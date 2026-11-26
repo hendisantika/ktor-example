@@ -1,6 +1,6 @@
 val kotlin_version = "2.4.21"
 val logback_version = "1.6.7"
-val postgresql_driver_version = "42.7.14"
+val postgresql_driver_version = "42.7.15"
 val exposed_version = "1.6.1"
 val testcontainers_version = "1.21.4"
 
